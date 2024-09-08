@@ -21,7 +21,7 @@ public class EmployeeController {
         return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
 
-    @PostMapping("/all")
+    @PostMapping("/add")
     public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
         return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
     }
