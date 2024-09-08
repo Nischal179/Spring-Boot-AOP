@@ -18,7 +18,7 @@ public class EmployeeController {
 
     @GetMapping("/all")
     public ResponseEntity<?> fetchAllEmployee() {
-        return new ResponseEntity<List<Employee>>(employeeService.getAllEmps(), HttpStatus.OK);
+        return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
 
     @PostMapping("/all")
