@@ -21,4 +21,14 @@ public class EmployeeAspect {
     public void afterAdvice(JoinPoint joinPoint) {
         System.out.println("Request to " + joinPoint.getSignature() + " ended at " + new Date());
     }
+
+    @Before(value = "execution(* com.nischal.aopdemo.service.EmployeeService.*(..))")
+    public void beforeAdviceForService(JoinPoint joinPoint) {
+        System.out.println("Request to service layer " + joinPoint.getSignature() + " started at " + new Date());
+    }
+
+    @After(value = "execution(* com.nischal.aopdemo.service.EmployeeService.*(..))")
+    public void afterAdviceForService(JoinPoint joinPoint) {
+        System.out.println("Request to service layer " + joinPoint.getSignature() + " ended at " + new Date());
+    }
 }
