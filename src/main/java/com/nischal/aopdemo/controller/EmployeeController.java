@@ -1,5 +1,6 @@
 package com.nischal.aopdemo.controller;
 
+import com.nischal.aopdemo.dto.EmployeeResponseDTO;
 import com.nischal.aopdemo.entity.Employee;
 import com.nischal.aopdemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class EmployeeController {
 
     @GetMapping("/all")
     public ResponseEntity<?> fetchAllEmployee() {
-        return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(), HttpStatus.OK);
+        return new ResponseEntity<List<EmployeeResponseDTO>>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
