@@ -3,6 +3,7 @@ package com.nischal.aopdemo.aop;
 import com.nischal.aopdemo.dto.EmployeeResponseDTO;
 import com.nischal.aopdemo.entity.Employee;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -97,7 +98,7 @@ public class EmployeeAspect {
         System.out.println("Business logic to save an employee ran successfully and employee is saved with id: " + employee.getId());
     }
 
-    @AfterThrowing(pointcut = "execution(* com.nischal.aopdemo.service.EmployeeService.addEmployee(..))",
+    @AfterThrowing(value = "execution(* com.nischal.aopdemo.service.EmployeeService.addEmployee(..))",
             throwing = "exception")
     public void afterReturningAdviceForService(JoinPoint joinPoint, Exception exception) {
 
@@ -107,5 +108,21 @@ public class EmployeeAspect {
 
         // print out the result of the method call
         System.out.println("Business logic to save an employee threw an exception " + exception.getMessage());
+    }
+
+    @Around(value = "execution(* com.nischal.aopdemo.service.EmployeeService.addEmployee(..))")
+    public Employee aroundAdviceForAddEmpService(ProceedingJoinPoint proceedingJoinPoint) {
+
+        System.out.println("Inside Around Advice in Aspect : Business logic to save employee started at " + new Date());
+
+        try {
+
+            return (Employee) proceedingJoinPoint.proceed();
+
+        } catch (Throwable e) {
+            System.out.println("Inside Around Aspect : Business logic to save employee failed terribly: " + new Date());
+        }
+        System.out.println("Inside Around Advice in Aspect : Business logic to save employee ended at " + new Date());
+        return null;
     }
 }
