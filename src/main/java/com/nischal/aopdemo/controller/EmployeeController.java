@@ -23,7 +23,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> addEmployee(@RequestBody Employee employee) throws Exception {
         return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
     }
 }

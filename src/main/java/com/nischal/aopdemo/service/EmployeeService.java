@@ -21,7 +21,12 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
-    public Employee addEmployee(Employee employee) {
+    public Employee addEmployee(Employee employee) throws Exception {
+
+        if (employee.getName().length() > 10) {
+            throw new  Exception("Sorry please reduce size of your name");
+        }
+
         return employeeRepo.save(employee);
     }
 
